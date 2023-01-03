@@ -55,3 +55,15 @@
     margin: 1%;
     margin-left: 0%;
 }
+
+.inputs .city-input{
+    width: 80%
+}
+
+.inputs>button{
+    width: 18%
+}
+
+.city{
+    display: flex;
+}
