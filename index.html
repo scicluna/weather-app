@@ -5,8 +5,92 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5-Day Weather</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./Assets/styles.css" />
-    <script src="script.js"></script>
+    <script src="./Assets/script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header class="title">
+      <h1>Weather Dashboard</h1>
+      <h1 class="current-date">Current Date</h1>
+    </header>
+    <main class="content">
+      <section class="search-city">
+        <input class="city-input" type="text" placeholder="city" />
+        <ul class="past-cities"></ul>
+      </section>
+      <div class="weather-container">
+      <section class="current">
+        <h2 class="current-city">City</h2>
+        <div class="currents">
+            <p class="current-temp">temp</p>
+        <p class="current-wind">wind</p>
+            <p class="current-humid">humidity</p>
+        </div>
+      </section>
+      <section class="five-day">
+        <h3>Five Day Forecast</h3>
+        <div class="days">
+            <div class="card" style="width: 12rem;">
+                <img data-img="0" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li data-temp="0" class="list-group-item">temp</li>
+                  <li data-humid="0" class="list-group-item">humid</li>
+                  <li data-wind="0" class="list-group-item">wind</li>
+                </ul>
+              </div>
+              <div class="card" style="width: 12rem;">
+                <img data-img="1" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li data-temp="1" class="list-group-item">temp</li>
+                  <li data-humid="1" class="list-group-item">humid</li>
+                  <li data-wind="1" class="list-group-item">wind</li>
+                </ul>
+              </div>
+              <div class="card" style="width: 12rem;">
+                <img data-img="2" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li data-temp="2" class="list-group-item">temp</li>
+                  <li data-humid="2" class="list-group-item">humid</li>
+                  <li data-wind="2" class="list-group-item">wind</li>
+                </ul>
+              </div>
+              <div class="card" style="width: 12rem;">
+                <img data-img="3" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li data-temp="3" class="list-group-item">temp</li>
+                  <li data-humid="3" class="list-group-item">humid</li>
+                  <li data-wind="3" class="list-group-item">wind</li>
+                </ul>
+              </div>
+              <div class="card" style="width: 12rem;">
+                <img data-img="4" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li data-temp="4" class="list-group-item">temp</li>
+                  <li data-humid="4" class="list-group-item">humid</li>
+                  <li data-wind="4" class="list-group-item">wind</li>
+                </ul>
+              </div>
+              
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

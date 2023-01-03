@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.title{
+    display: flex;
+    justify-content: space-around;
+    height:10vh;
+    width: auto;
+    margin: 1rem;
+    background-color: cadetblue;
+}
+
+.content {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.search-city{
+    display: flex;
+    flex-direction: column;
+    height:80vh;
+    width: 18%;
+    margin: 1%;
+    background-color: aquamarine;
+}
+
+.current{
+    display:flex;
+    flex-direction: column;
+    height: 30vh;
+    padding: 1vw;
+}
+
+.five-day{
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+}
+
+.days{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.weather-container{
+    display: flex;
+    flex-direction: column;
+    width: 79%;
+    background-color: bisque;
+    margin: 1%;
+    margin-left: 0%;
+}
