@@ -7,10 +7,12 @@ const currentTemp = document.querySelector(".current-temp")
 const currentWind = document.querySelector(".current-wind")
 const currentHumid = document.querySelector(".current-humid")
 const currentImg = document.querySelector(".current-img")
+const currentDay = document.querySelector(".current")
 const fiveImg = document.querySelectorAll("[data-img]")
 const fiveTemp = document.querySelectorAll("[data-temp]")
 const fiveHumid = document.querySelectorAll("[data-humid]")
 const fiveWind = document.querySelectorAll("[data-wind]")
+const fiveDay = document.querySelector(".five-day")
 
 let cities = JSON.parse(localStorage.getItem(`cities`))
 if(!cities){
@@ -49,6 +51,10 @@ function fetchWeather(){
             writeFive(data)
             saveData(data)
             initPast()
+
+            if (cities !== []){
+                showHud()
+            }
         })
 }
 
@@ -102,6 +108,7 @@ function retrieveData(e){
     const pastData = JSON.parse(localStorage.getItem(`${thisCity}`))
     writeCurrent(pastData)
     writeFive(pastData)
+    showHud()
 }
 
 function writeHistory(){
@@ -115,4 +122,9 @@ function writeHistory(){
         cityBtn.classList.add("city-button")
         pastCities.appendChild(cityBtn)
     }
+}
+
+function showHud(){
+    currentDay.classList.remove("hide")
+    fiveDay.classList.remove("hide")
 }
