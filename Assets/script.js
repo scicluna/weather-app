@@ -13,6 +13,7 @@ const fiveTemp = document.querySelectorAll("[data-temp]")
 const fiveHumid = document.querySelectorAll("[data-humid]")
 const fiveWind = document.querySelectorAll("[data-wind]")
 const fiveDay = document.querySelector(".five-day")
+const fiveDate = document.querySelectorAll("[data-date]")
 
 let cities = JSON.parse(localStorage.getItem(`cities`))
 if(!cities){
@@ -46,6 +47,11 @@ function fetchWeather(){
             return response.json();
         })
         .then(function (data) {
+
+            if (data.cod === "404"){
+                return
+            }
+
             console.log(data)
             writeCurrent(data)
             writeFive(data)
@@ -59,19 +65,20 @@ function fetchWeather(){
 }
 
 function writeCurrent(data){
-    currentCity.innerText = data.city.name
-    currentTemp.innerText = `${data.list[0].main.temp} F`
-    currentWind.innerText = `${data.list[0].wind.speed} MPH`
-    currentHumid.innerText = `${data.list[0].main.humidity} %`
+    currentCity.innerText = `${data.city.name} (${dayjs().format("MM/DD/YYYY")})` 
+    currentTemp.innerHTML = `<b>Temperature</b> ${data.list[0].main.temp} F`
+    currentWind.innerHTML = `<b>Wind</b> ${data.list[0].wind.speed} MPH`
+    currentHumid.innerHTML = `<b>Humidity</b> ${data.list[0].main.humidity} %`
     currentImg.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png` 
 }
 
 function writeFive(data){
     for (let i=0;i<data.list.length/8;i++){
         let date = i+7+(7*i)
-        fiveTemp[i].innerText = `${data.list[date].main.temp} F`
-        fiveHumid[i].innerText = `${data.list[date].wind.speed} MPH`
-        fiveWind[i].innerText = `${data.list[date].main.humidity} %`
+        fiveDate[i].innerText = `${data.list[date].dt_txt}`
+        fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[date].main.temp} F`
+        fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[date].wind.speed} MPH`
+        fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[date].main.humidity} %`
         fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[date].weather[0].icon}@2x.png` 
     }
 }
@@ -128,3 +135,9 @@ function showHud(){
     currentDay.classList.remove("hide")
     fiveDay.classList.remove("hide")
 }
+
+//features to add
+//refactor code to make prettier
+//rethink entire css scheme colorwise/fontwise/fontsizewise
+//more dates on the screen?
+//x button for past cities
