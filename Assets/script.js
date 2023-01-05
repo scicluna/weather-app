@@ -91,13 +91,16 @@ function saveData(data){
     }
 
     localStorage.setItem(`${city}`, JSON.stringify(data))
+
+    if(!cities.includes(city)){
     cities.push(city)
     localStorage.setItem("cities", JSON.stringify(cities))
-
     let cityBtn = document.createElement("button")
     cityBtn.innerText = city
     cityBtn.classList.add("city-button")
     pastCities.appendChild(cityBtn)
+    }
+
 }
 
 function initPast(){
