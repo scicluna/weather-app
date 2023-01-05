@@ -15,6 +15,7 @@ const fiveWind = document.querySelectorAll("[data-wind]")
 const fiveDay = document.querySelector(".five-day")
 const fiveDate = document.querySelectorAll("[data-date]")
 
+
 let cities = JSON.parse(localStorage.getItem(`cities`))
 if(!cities){
     cities = []
@@ -88,21 +89,33 @@ function saveData(data){
     if(!cities.includes(city)){
     cities.push(city)
     localStorage.setItem("cities", JSON.stringify(cities))
+    let historyDiv = document.createElement("div")
+    historyDiv.classList.add("history")
     let cityBtn = document.createElement("button")
     cityBtn.innerText = city
     cityBtn.classList.add("city-button")
-    pastCities.appendChild(cityBtn)
+    let deleteBtn = document.createElement("button")
+    deleteBtn.classList.add("close")
+    deleteBtn.innerHTML = "&times"
+    historyDiv.appendChild(cityBtn)
+    historyDiv.appendChild(deleteBtn)
+    pastCities.appendChild(historyDiv)
+    cityInput.value = ""
     }
 
 }
 
 function initPast(){
     const pastBtns = document.querySelectorAll(".city-button")
+    const closeBtns = document.querySelectorAll(".close")
     pastBtns.forEach(btn=>{
         btn.removeEventListener("click", retrieveData)
     })
     pastBtns.forEach(btn=>{
         btn.addEventListener("click", retrieveData)
+    })
+    closeBtns.forEach(btn=>{
+        btn.addEventListener("click", removeData)
     })
 }
 
@@ -120,10 +133,17 @@ function writeHistory(){
     }
 
     for (city of cities){
+        let historyDiv = document.createElement("div")
+        historyDiv.classList.add("history")
         let cityBtn = document.createElement("button")
         cityBtn.innerText = city
         cityBtn.classList.add("city-button")
-        pastCities.appendChild(cityBtn)
+        let deleteBtn = document.createElement("button")
+        deleteBtn.classList.add("close")
+        deleteBtn.innerHTML = "&times"
+        historyDiv.appendChild(cityBtn)
+        historyDiv.appendChild(deleteBtn)
+        pastCities.appendChild(historyDiv)
     }
 }
 
@@ -132,8 +152,22 @@ function showHud(){
     fiveDay.classList.remove("hide")
 }
 
+function removeData(e){
+    let div = e.path[1]
+    let cityName = e.path[1].children[0].innerText
+
+    let index = cities.indexOf(cityName)
+    cities.splice(index, 1)
+
+    localStorage.setItem("cities", JSON.stringify(cities))
+    localStorage.removeItem(cityName)
+    div.innerHTML = ""
+}
+
+
+
 //features to add
 //refactor code to make prettier
-//rethink entire css scheme colorwise/fontwise/fontsizewise
-//more dates on the screen?
+//rethink entire css scheme colorwise/fontwise/fontsizewise - DONE
+//more dates on the screen? - DONE
 //x button for past cities
