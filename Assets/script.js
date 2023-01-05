@@ -23,16 +23,10 @@ if(!cities){
 searchBtn.addEventListener("click", fetchWeather)
 
 function init(){
-    findDate()
     writeHistory()
     initPast()
 }
 init()
-
-function findDate(){
-    let today = dayjs().format("MMM DD YYYY")
-    currentDate.innerText = today
-}
 
 function fetchWeather(){
     let targetCity = cityInput.value
@@ -52,7 +46,6 @@ function fetchWeather(){
                 return
             }
 
-            console.log(data)
             writeCurrent(data)
             writeFive(data)
             saveData(data)

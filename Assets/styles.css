@@ -6,12 +6,15 @@
 
 body {
     background-color: rgba(110, 153, 231, 0.585);
+    overflow: hidden;
 }
 
 .title{
     display: flex;
-    justify-content: space-around;
-    height:10vh;
+    justify-content: center;
+    align-items: center;
+    height:5vh;
+    font-weight: bolder;
     width: auto;
     background-color: rgba(110, 152, 231, 0.184) ;
 }
@@ -25,10 +28,10 @@ body {
 .search-city{
     display: flex;
     flex-direction: column;
-    height:85vh;
+    height:90vh;
     overflow: hidden;
     width: 18%;
-    margin: 1%;
+    padding: 1%;
     background-color: rgba(128, 128, 128, 0.075);
     align-items: center;
 }
@@ -58,7 +61,7 @@ body {
 .days{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .weather-container{
@@ -101,7 +104,7 @@ body {
 
 .city-button{
     width:100%;
-    background-color: rgba(128, 128, 128, 0.075);
+    background-color: rgba(128, 128, 128, 0);
     font-weight: bold;
     border: none;
 }
@@ -119,4 +122,17 @@ body {
 
 .hide{
     opacity:0;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(110, 152, 231, 0.184) ;
+    height:5vh;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color:black;
 }
