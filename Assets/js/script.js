@@ -15,6 +15,8 @@ const fiveHumid = document.querySelectorAll("[data-humid]")
 const fiveWind = document.querySelectorAll("[data-wind]")
 const fiveDay = document.querySelector(".five-day")
 const fiveDate = document.querySelectorAll("[data-date]")
+const dayNightSwitch = document.querySelector("[data-switch]")
+const dayNight = document.querySelector("#daynight")
 
 //Get an array of city names from local storage, or set cities to an empty array
 let cities = JSON.parse(localStorage.getItem(`cities`))
@@ -27,6 +29,7 @@ function init(){
     writeHistory()
     initPast()
     searchBtn.addEventListener("click", fetchWeather)
+    dayNightSwitch.addEventListener("change", toggleDayNight)
 }
 init()
 
@@ -35,7 +38,7 @@ function fetchWeather(e){
     e.preventDefault()
     //Create our desired url for our api fetch
     let targetCity = cityInput.value
-    let targetURL = `http://api.openweathermap.org/data/2.5/forecast?q=${targetCity}&appid=1ce80842bf374ae8d6c2821daf784f11&units=imperial`
+    let targetURL = `http://api.openweathermap.org/data/2.5/forecast?q=${targetCity}&cnt=45&appid=1ce80842bf374ae8d6c2821daf784f11&units=imperial`
 
     //If the input is empty, don't continue
     if (targetCity === ""){
@@ -81,17 +84,47 @@ function writeCurrent(data){
 
 //Write the five day forecast to the screen using a for loop to move through the weather data object
 function writeFive(data){
-    for (let i=0;i<data.list.length/8;i++){
-        let date = i+7+(7*i)
-        fiveDate[i].innerText = `${data.list[date].dt_txt}`
-        fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[date].main.temp} F`
-        fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[date].wind.speed} MPH`
-        fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[date].main.humidity} %`
-        fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[date].weather[0].icon}@2x.png` 
+
+    let dayIndex = []
+    let nightIndex = []
+    for (let i=0;i<data.list.length;i++){
+        if(data.list[i].dt_txt.includes("12")){
+            dayIndex.push(i)
+        }
+
+        if(data.list[i].dt_txt.includes("21")){
+            nightIndex.push(i)          
+        }
+    }
+
+    if(dayNightSwitch.dataset.switch === "Day"){
+        for (let i=0; i<data.list.length/8; i++){
+
+            if(data.list[dayIndex[i]].dt_txt === null){
+                return
+            }
+
+            fiveDate[i].innerText = `${data.list[dayIndex[i]].dt_txt}`
+            fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[dayIndex[i]].main.temp} F`
+            fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[dayIndex[i]].wind.speed} MPH`
+            fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[dayIndex[i]].main.humidity} %`
+            fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[dayIndex[i]].weather[0].icon}@2x.png` 
+        }
+    } else {
+        for (let i=0; i<data.list.length/8; i++){
+
+            if(data.list[nightIndex[i]].dt_txt === null){
+                return
+            }
+
+            fiveDate[i].innerText = `${data.list[nightIndex[i]].dt_txt}`
+            fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[nightIndex[i]].main.temp} F`
+            fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[nightIndex[i]].wind.speed} MPH`
+            fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[nightIndex[i]].main.humidity} %`
+            fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[nightIndex[i]].weather[0].icon}@2x.png` 
+        }
     }
 }
-
-//Use Date() for more fun with times!!, can maybe parse dt_txt with it and get more specific times
 
 //Save our results to local storage
 function saveData(data){
@@ -195,4 +228,12 @@ function writeBtns(city){
     historyDiv.appendChild(cityBtn)
     historyDiv.appendChild(deleteBtn)
     pastCities.appendChild(historyDiv)
+}
+
+//Handle our five day forecast switch
+function toggleDayNight(e){
+    dayNightSwitch.dataset.switch === "Day" ? dayNightSwitch.dataset.switch = "Night" : dayNightSwitch.dataset.switch = "Day"
+    dayNight.innerText = dayNightSwitch.dataset.switch
+    let targetCity = currentCity.innerText.split("(").splice(0,1).join("").trim()
+    writeFive(JSON.parse(localStorage.getItem(`${targetCity}`)))
 }
