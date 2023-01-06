@@ -38,7 +38,7 @@ function fetchWeather(e){
     e.preventDefault()
     //Create our desired url for our api fetch
     let targetCity = cityInput.value
-    let targetURL = `http://api.openweathermap.org/data/2.5/forecast?q=${targetCity}&cnt=45&appid=1ce80842bf374ae8d6c2821daf784f11&units=imperial`
+    let targetURL = `https://api.openweathermap.org/data/2.5/forecast?q=${targetCity}&cnt=45&appid=1ce80842bf374ae8d6c2821daf784f11&units=imperial`
 
     //If the input is empty, don't continue
     if (targetCity === ""){
@@ -54,7 +54,7 @@ function fetchWeather(e){
                 return
             }
         })
-        .then(function (data) {
+        .then(function (data) { 
             //If data came back undefined, don't continue
             if(data === undefined){
                 return
