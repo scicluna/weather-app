@@ -3,6 +3,7 @@ const currentDate = document.querySelector(".current-date")
 const searchBtn = document.querySelector(".go")
 const cityInput = document.querySelector(".city-input")
 const pastCities = document.querySelector(".past-cities")
+const weatherContainer = document.querySelector(".weather-container")
 const currentCity = document.querySelector(".current-city")
 const currentTemp = document.querySelector(".current-temp")
 const currentWind = document.querySelector(".current-wind")
@@ -15,6 +16,7 @@ const fiveHumid = document.querySelectorAll("[data-humid]")
 const fiveWind = document.querySelectorAll("[data-wind]")
 const fiveDay = document.querySelector(".five-day")
 const fiveDate = document.querySelectorAll("[data-date]")
+const fiveCard = document.querySelectorAll(".card")
 const dayNightSwitch = document.querySelector("[data-switch]")
 const dayNight = document.querySelector("#daynight")
 
@@ -51,6 +53,7 @@ function fetchWeather(e){
             if (response.ok) {return response.json();}
             else {
                 window.alert("city not found")
+                cityInput.value = ""
                 return
             }
         })
@@ -84,6 +87,8 @@ function writeCurrent(data){
 
 //Write the five day forecast to the screen using a for loop to move through the weather data object
 function writeFive(data){
+
+    console.log(data)
 
     let dayIndex = []
     let nightIndex = []
@@ -235,5 +240,19 @@ function toggleDayNight(e){
     dayNightSwitch.dataset.switch === "Day" ? dayNightSwitch.dataset.switch = "Night" : dayNightSwitch.dataset.switch = "Day"
     dayNight.innerText = dayNightSwitch.dataset.switch
     let targetCity = currentCity.innerText.split("(").splice(0,1).join("").trim()
+
+    if(dayNightSwitch.dataset.switch === "Night"){
+    weatherContainer.classList.add("dark")
+    fiveCard.forEach(card=>{
+        card.classList.add("dark")
+    })
+    } else {
+    weatherContainer.classList.remove("dark")
+    fiveCard.forEach(card=>{
+        card.classList.remove("dark")
+    })
+    }
+
+
     writeFive(JSON.parse(localStorage.getItem(`${targetCity}`)))
 }

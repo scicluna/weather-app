@@ -67,9 +67,10 @@ body {
 .weather-container{
     display: flex;
     flex-direction: column;
-    width: 79%;
-    margin: 1%;
-    margin-left: 0%;
+    width: 82%;
+    padding: 1%;
+    padding-left: 0%;
+    transition: background-color 1s ease;
 }
 
 .inputs{
@@ -150,4 +151,9 @@ a{
 
 .close:hover{
     color:red
+}
+
+.dark {
+    transition: background-color 1s ease;
+    background-color: rgba(80, 120, 195, 0.421);
 }
