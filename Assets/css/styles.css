@@ -41,13 +41,15 @@ body {
     flex-direction: column;
     height: 30vh;
     padding: 1vw;
+    padding-top: 0vw;
 }
 
 .current-img{
     width:10vw;
 }
 .currents>p{
-    font-size: 1vw;
+    font-size: 1.25vw;
+    padding-bottom: .25vw;
 }
 
 .five-day{
@@ -83,13 +85,14 @@ body {
 
 .inputs .city-input{
     width: 80%;
-    height: 4vw;
-    font-size: 3vw;
+    height: 2vw;
+    font-size: 2vw;
 }
 
 .inputs>button{
     width: 18%;
-    height:4vw;
+    height:2vw;
+    font-size: 1vw;
 }
 
 .city{
@@ -114,14 +117,14 @@ body {
 }
 
 .city-button:hover{
-    font-size: 3vw
+    font-size: 2.2vw
 }
 
 .past-cities{
     list-style: none;
     padding-left: 0;
-    line-height: 4vw;
-    font-size: 2.8vw;
+    line-height: 3vw;
+    font-size: 2vw;
     width:100%;
 }
 
@@ -149,7 +152,7 @@ a{
 .close {
    background-color: rgba(255, 255, 255, 0);
    border: none;
-   font-size: 4vw;
+   font-size: 3vw;
 }
 
 .close:hover{
@@ -165,7 +168,7 @@ a{
     background-color: rgba(135, 207, 235, 0.168)
 }
 
-@media (width < 550px){
+@media (width < 700px){
     body{
         overflow:auto;
     }
@@ -200,5 +203,19 @@ a{
 
     .city-button{
         font-size:5vw;
+    }
+    .inputs .city-input{
+        height:6vw;
+        font-size: 6vw;
+    }
+    .inputs>button{
+        height: 6vw;
+    }
+
+    .city-button:hover{
+        font-size: 5.1vw;
+    }
+    .history{
+        line-height: 5vw;
     }
 }
