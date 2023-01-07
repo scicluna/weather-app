@@ -86,9 +86,10 @@ function writeCurrent(data){
 }
 
 //Write the five day forecast to the screen using a for loop to move through the weather data object
+//I'm aware that this function may cause occasional issues where the five forecasted days may include the current day
+//This is due to our inability to grab more than 40 items in our data object (due to using the free version)
+//If I had access to the paid version, I would be able to remedy this, but there is no other way to avoid this and maintain nice and even times for our forcasts
 function writeFive(data){
-
-    console.log(data)
 
     let dayIndex = []
     let nightIndex = []
@@ -200,6 +201,7 @@ function showHud(){
 function hideHud(){
     currentDay.classList.add("hide")
     fiveDay.classList.add("hide")
+    weatherContainer.classList.remove("dark")
 }
 
 //Handle our "X" buttons and allows us to remove items from our history

@@ -43,8 +43,11 @@ body {
     padding: 1vw;
 }
 
+.current-img{
+    width:10vw;
+}
 .currents>p{
-    font-size: 1.5rem;
+    font-size: 1vw;
 }
 
 .five-day{
@@ -54,7 +57,7 @@ body {
 }
 
 .five-day>h3{
-    font-size: 3rem;
+    font-size: 2vw;
     font-weight: bold;
 }
 
@@ -80,23 +83,23 @@ body {
 
 .inputs .city-input{
     width: 80%;
-    height: 3rem;
-    font-size: 2rem;
+    height: 4vw;
+    font-size: 3vw;
 }
 
 .inputs>button{
     width: 18%;
-    height:3rem;
+    height:4vw;
 }
 
 .city{
     display: flex;
     align-items: center;
-    height: 5rem;
+    height: 6vw;
 }
 
 .city>h1{
-    font-size: 4rem;
+    font-size: 4vw;
 }
 
 .card {
@@ -111,14 +114,14 @@ body {
 }
 
 .city-button:hover{
-    font-size: 2.2rem
+    font-size: 3vw
 }
 
 .past-cities{
     list-style: none;
     padding-left: 0;
-    line-height: 3rem;
-    font-size: 2rem;
+    line-height: 4vw;
+    font-size: 2.8vw;
     width:100%;
 }
 
@@ -146,7 +149,7 @@ a{
 .close {
    background-color: rgba(255, 255, 255, 0);
    border: none;
-   font-size: 3rem;
+   font-size: 4vw;
 }
 
 .close:hover{
@@ -156,4 +159,46 @@ a{
 .dark {
     transition: background-color 1s ease;
     background-color: rgba(80, 120, 195, 0.421);
+}
+
+.dark .card{
+    background-color: rgba(135, 207, 235, 0.168)
+}
+
+@media (width < 550px){
+    body{
+        overflow:auto;
+    }
+    .search-city{
+        width: 100vw;
+        height: auto;
+    }
+    .current{
+        height:auto;
+    }
+    .days{
+        flex-direction: column;
+        width:100vw;
+        align-items: center;
+    }
+    .inputs>button{
+        font-size: 2vw
+    }
+    .weather-container{
+        width:100vw
+    }
+    .city>h1{
+        font-size: 6vw;
+    }
+    .currents>p{
+        font-size: 4vw;
+    }
+
+    .five-day>h3{
+        font-size:5vw;
+    }
+
+    .city-button{
+        font-size:5vw;
+    }
 }
