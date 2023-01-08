@@ -94,11 +94,11 @@ function writeFive(data){
     let dayIndex = []
     let nightIndex = []
     for (let i=0;i<data.list.length;i++){
-        if(data.list[i].dt_txt.includes("12")){
+        if(data.list[i].dt_txt.includes("12:00")){
             dayIndex.push(i)
         }
 
-        if(data.list[i].dt_txt.includes("21")){
+        if(data.list[i].dt_txt.includes("21:00")){
             nightIndex.push(i)          
         }
     }
