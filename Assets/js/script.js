@@ -122,7 +122,7 @@ function writeFive(data){
             fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[dayIndex[i]].main.temp} F`
             fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[dayIndex[i]].wind.speed} MPH`
             fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[dayIndex[i]].main.humidity} %`
-            fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[dayIndex[i]].weather[0].icon}@2x.png` 
+            fiveImg[i].src = `https://openweathermap.org/img/wn/${data.list[dayIndex[i]].weather[0].icon}@2x.png` 
         }
     } else {
         for (let i=0; i<data.list.length/8; i++){
@@ -135,7 +135,7 @@ function writeFive(data){
             fiveTemp[i].innerHTML = `<b>Temp</b> ${data.list[nightIndex[i]].main.temp} F`
             fiveHumid[i].innerHTML = `<b>Wind</b> ${data.list[nightIndex[i]].wind.speed} MPH`
             fiveWind[i].innerHTML = `<b>Humid</b> ${data.list[nightIndex[i]].main.humidity} %`
-            fiveImg[i].src = `http://openweathermap.org/img/wn/${data.list[nightIndex[i]].weather[0].icon}@2x.png` 
+            fiveImg[i].src = `https://openweathermap.org/img/wn/${data.list[nightIndex[i]].weather[0].icon}@2x.png` 
         }
     }
 }
