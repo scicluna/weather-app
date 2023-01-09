@@ -143,12 +143,10 @@ function writeFive(data){
 //Save our results to local storage
 function saveData(data){
     let city = data.city.name
-
     //Don't save anything if city is null
     if(!city){
         return
     }
-
     //Prevent multiple of the same cities from being added to our history list and create a new history button
     if(!cities.includes(city)){
     cities.push(city)
@@ -164,10 +162,10 @@ function initPast(){
     const pastBtns = document.querySelectorAll(".city-button")
     const closeBtns = document.querySelectorAll(".close")
     pastBtns.forEach(btn=>{
-        btn.removeEventListener("click", retrieveData)
+        btn.removeEventListener("click", fetchWeather)
     })
     pastBtns.forEach(btn=>{
-        btn.addEventListener("click", retrieveData)
+        btn.addEventListener("click", fetchWeather)
     })
     closeBtns.forEach(btn=>{
         btn.removeEventListener("click", removeData)
@@ -175,12 +173,6 @@ function initPast(){
     closeBtns.forEach(btn=>{
         btn.addEventListener("click", removeData)
     })
-}
-
-//Retrieves weather data from local storage using the inner-text of the history button as a key. Then writes it to screen
-function retrieveData(e){
-    fetchWeather(e)
-    showHud()
 }
 
 //Writes history to screen using the cities array from local storage
