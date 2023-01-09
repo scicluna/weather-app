@@ -90,7 +90,7 @@ function writeCurrent(data){
     currentTemp.innerHTML = `<b>Temperature</b> ${data.list[0].main.temp} F`
     currentWind.innerHTML = `<b>Wind</b> ${data.list[0].wind.speed} MPH`
     currentHumid.innerHTML = `<b>Humidity</b> ${data.list[0].main.humidity} %`
-    currentImg.src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png` 
+    currentImg.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png` 
 }
 
 //Write the five day forecast to the screen using a for loop to move through the weather data object
