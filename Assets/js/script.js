@@ -38,8 +38,16 @@ init()
 //Fetches the weather object based on the input value on the search bar
 function fetchWeather(e){
     e.preventDefault()
-    //Create our desired url for our api fetch
-    let targetCity = cityInput.value
+
+    let targetCity;
+
+    //Deciding whether or not to use a history button's destination or the search bar's value for our URL or the current city in the case of the day/night switch.
+    if(e.target.innerText === "Go"){
+        targetCity = cityInput.value
+    } else if (e.target.nodeName === "INPUT"){
+        targetCity = currentCity.innerText.split("(").splice(0,1).join("").trim()
+    } else targetCity = e.target.innerText
+
     let targetURL = `https://api.openweathermap.org/data/2.5/forecast?q=${targetCity}&cnt=45&appid=1ce80842bf374ae8d6c2821daf784f11&units=imperial`
 
     //If the input is empty, don't continue
@@ -141,9 +149,6 @@ function saveData(data){
         return
     }
 
-    //Save our weather data to local storage using the city name as a key
-    localStorage.setItem(`${city}`, JSON.stringify(data))
-
     //Prevent multiple of the same cities from being added to our history list and create a new history button
     if(!cities.includes(city)){
     cities.push(city)
@@ -174,10 +179,7 @@ function initPast(){
 
 //Retrieves weather data from local storage using the inner-text of the history button as a key. Then writes it to screen
 function retrieveData(e){
-    let thisCity = e.target.innerText
-    const pastData = JSON.parse(localStorage.getItem(`${thisCity}`))
-    writeCurrent(pastData)
-    writeFive(pastData)
+    fetchWeather(e)
     showHud()
 }
 
@@ -218,7 +220,6 @@ function removeData(e){
     }
     //Save new array to local storage, remove the city's key for holding weather data, and get rid of the div
     localStorage.setItem("cities", JSON.stringify(cities))
-    localStorage.removeItem(cityName)
     div.innerHTML = ""
 }
 
@@ -241,7 +242,6 @@ function writeBtns(city){
 function toggleDayNight(e){
     dayNightSwitch.dataset.switch === "Day" ? dayNightSwitch.dataset.switch = "Night" : dayNightSwitch.dataset.switch = "Day"
     dayNight.innerText = dayNightSwitch.dataset.switch
-    let targetCity = currentCity.innerText.split("(").splice(0,1).join("").trim()
 
     if(dayNightSwitch.dataset.switch === "Night"){
     weatherContainer.classList.add("dark")
@@ -255,6 +255,5 @@ function toggleDayNight(e){
     })
     }
 
-
-    writeFive(JSON.parse(localStorage.getItem(`${targetCity}`)))
+    fetchWeather(e)
 }

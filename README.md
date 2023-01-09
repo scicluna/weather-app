@@ -1,4 +1,4 @@
-# JS-QUIZ
+# Weather App
 
 The purpose of this project is to create a weather application that finds the current and five day forecast for the city that the user searched for.
 
